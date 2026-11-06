@@ -1,0 +1,12 @@
+{
+  "buildCommand": "pnpm --filter @workspace/afaqyomi-studio build",
+  "outputDirectory": "artifacts/afaqyomi-studio/dist/public",
+  "installCommand": "pnpm install --no-frozen-lockfile",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

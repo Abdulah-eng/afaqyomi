@@ -1,0 +1,16 @@
+{
+  "name": "afaqyomi-workspace",
+  "private": true,
+  "packageManager": "pnpm@10.8.1",
+  "scripts": {
+    "build": "pnpm --filter @workspace/afaqyomi-studio build",
+    "dev": "pnpm --filter @workspace/afaqyomi-studio dev",
+    "typecheck": "pnpm --filter @workspace/afaqyomi-studio typecheck"
+  },
+  "devDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.67.5",
+    "@tailwindcss/oxide-win32-x64-msvc": "^4.3.4",
+    "lightningcss-win32-x64-msvc": "^1.33.0",
+    "typescript": "^7.0.2"
+  }
+}

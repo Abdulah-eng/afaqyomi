@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "AFAQYOMI Creative Studio"
+description = "A premium creative digital studio website for AFAQYOMI, showcasing AI video, design, web, 3D/CAD, and creative promotion work."
+version = "1.0.0"
+id = "artifacts/afaqyomi-studio"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19375
+
+[services.development]
+run = "pnpm --filter @workspace/afaqyomi-studio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/afaqyomi-studio", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/afaqyomi-studio/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19375"
+BASE_PATH = "/"

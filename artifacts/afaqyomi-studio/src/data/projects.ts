@@ -1,0 +1,688 @@
+export type WorkCategory =
+  | 'Music Promotion'
+  | 'Music Distribution'
+  | 'Music Pitching'
+  | 'Artist Branding & Creative'
+  | 'Digital Development';
+
+export type Project = {
+  id: string;
+  slug: string;
+  title: string;
+  category: WorkCategory;
+  subCategory: string;
+  shortDescription: string;
+  description: string;
+  thumbnail: string;
+  heroImage?: string;
+  gallery?: string[];
+  videoUrl?: string;
+  audioUrl?: string;
+  audioFormat?: 'audio/mpeg' | 'audio/wav' | 'audio/flac';
+  duration?: string;
+  services: string[];
+  tools: string[];
+  year?: string;
+  client?: string;
+  featured: boolean;
+  isPublished: boolean;
+  isConceptWork: boolean;
+  conceptLabel: string;
+  deviceType?: 'desktop' | 'mobile' | 'both';
+  metrics?: { label: string; value: string }[];
+  accentColor?: string;
+};
+
+const media = '/media/';
+
+export const portfolioCategories: WorkCategory[] = [
+  'Music Promotion',
+  'Music Distribution',
+  'Music Pitching',
+  'Artist Branding & Creative',
+  'Digital Development',
+];
+
+export const projects: Project[] = [
+  // ==========================================
+  // 1. MUSIC PROMOTION PROJECTS
+  // ==========================================
+  {
+    id: 'spotify-promotional-campaign-framework',
+    slug: 'spotify-promotional-campaign-framework',
+    title: 'Spotify Release Discovery Campaign',
+    category: 'Music Promotion',
+    subCategory: 'Spotify Promotion',
+    shortDescription: 'Algorithmic save-to-stream optimization and community playlist seeding methodology.',
+    description:
+      'A comprehensive Spotify promotional campaign framework developed by AFAQYOMI. Focuses on pre-save accumulation, first-48-hour save ratios, and listener community engagement to prompt Discover Weekly and Release Radar algorithm triggers. Labelled as an agency demonstration framework.',
+    thumbnail: `${media}afaqyomi-audio-mastering-cover.svg`,
+    heroImage: `${media}afaqyomi-audio-mastering-cover.svg`,
+    gallery: [
+      `${media}afaqyomi-audio-mastering-cover.svg`,
+      `${media}brand_new_day_cover.png`,
+    ],
+    services: ['Spotify Promotion', 'Music Release Campaigns', 'Artist Profile Optimization'],
+    tools: ['Spotify for Artists', 'Algorithmic Targeting', 'Audience Analytics'],
+    year: '2026',
+    featured: true,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Agency Demonstration Framework',
+    accentColor: '#1DB954',
+  },
+  {
+    id: 'soundcloud-community-reach-model',
+    slug: 'soundcloud-community-reach-model',
+    title: 'SoundCloud Tastemaker & Repost Campaign',
+    category: 'Music Promotion',
+    subCategory: 'SoundCloud Promotion',
+    shortDescription: 'Collective repost scheduling and electronic/hip-hop community activation.',
+    description:
+      'A structured SoundCloud promotional campaign model designed to activate engaged niche music collectives, repost networks, and listener feedback loops without artificial inflation. Labelled as concept work.',
+    thumbnail: `${media}brunchy_track_cover.png`,
+    heroImage: `${media}brunchy_track_cover.png`,
+    audioUrl: `${media}as_alwayz_track.wav`,
+    audioFormat: 'audio/wav',
+    duration: '3:18',
+    services: ['SoundCloud Promotion', 'Music Discovery Campaigns'],
+    tools: ['Repost Networks', 'SoundCloud Pro', 'Community Outreach'],
+    year: '2026',
+    featured: true,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Concept Work',
+    accentColor: '#FF5500',
+  },
+  {
+    id: 'youtube-music-video-promotion-suite',
+    slug: 'youtube-music-video-promotion-suite',
+    title: 'YouTube In-Feed Music Discovery Campaign',
+    category: 'Music Promotion',
+    subCategory: 'YouTube Promotion',
+    shortDescription: 'Targeted viewer reach, custom thumbnail optimization, and Official Artist Channel alignment.',
+    description:
+      'Demonstration campaign showing multi-angle YouTube music marketing: combining high-contrast thumbnail A/B testing, precise genre keyword metadata, and targeted in-feed discovery for music listeners.',
+    thumbnail: `${media}youtube_thumbnail_design.png`,
+    heroImage: `${media}youtube_thumbnail_design.png`,
+    videoUrl: `${media}ai-music-video-showcase-01.mp4`,
+    services: ['YouTube Promotion', 'Music Video Promotion', 'Cover Art & Banner Design'],
+    tools: ['YouTube Studio OAC', 'Video SEO', 'Creative Art Direction'],
+    year: '2025',
+    featured: true,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Demonstration Project',
+    accentColor: '#FF0000',
+  },
+  {
+    id: 'tiktok-sound-launch-campaign',
+    slug: 'tiktok-sound-launch-campaign',
+    title: 'TikTok Sound Hook & Micro-Creator Seeding',
+    category: 'Music Promotion',
+    subCategory: 'TikTok Promotion',
+    shortDescription: '15-second hook extraction, audio verification, and trend concept frameworks.',
+    description:
+      'A tactical TikTok music promotion campaign concept illustrating how to identify the most infectious 15-second vocal hook, generate creative prompts for lifestyle creators, and build audio page velocity.',
+    thumbnail: `${media}run_to_scar_cover.png`,
+    heroImage: `${media}run_to_scar_cover.png`,
+    services: ['TikTok Promotion', 'Social Media Music Marketing'],
+    tools: ['TikTok Sound Hub', 'Hook Analysis', 'Creator Workflow Design'],
+    year: '2026',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Concept Work',
+    accentColor: '#EE1D52',
+  },
+  {
+    id: 'instagram-reels-music-marketing',
+    slug: 'instagram-reels-music-marketing',
+    title: 'Instagram Reels Audio Integration & Visual Campaign',
+    category: 'Music Promotion',
+    subCategory: 'Instagram Promotion',
+    shortDescription: 'Story count-downs, visual audio snippets, and direct-to-stream funnel cards.',
+    description:
+      'Visual asset suite and rollout schedule demonstrating how artists leverage Instagram Reels, profile audio tags, and interactive story countdowns to turn social scrollers into streaming fans.',
+    thumbnail: `${media}windows_cover.png`,
+    heroImage: `${media}windows_cover.png`,
+    services: ['Instagram Promotion', 'Artist Branding & Visibility'],
+    tools: ['Meta Creative Tools', 'Motion Graphics', 'Bio Funneling'],
+    year: '2026',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Demonstration Project',
+    accentColor: '#C13584',
+  },
+  {
+    id: 'cinematic-music-video-promotion',
+    slug: 'cinematic-music-video-promotion',
+    title: 'Cinematic Music Video Premiere & Distribution',
+    category: 'Music Promotion',
+    subCategory: 'Music Video Promotion',
+    shortDescription: 'Teaser rollouts, premiere countdowns, and blog coverage scheduling.',
+    description:
+      'Completed visual production showcase by AFAQYOMI highlighting high-production video premiere planning, short-form teaser cutdowns, and multi-channel video distribution.',
+    thumbnail: `${media}ai-music-video-showcase-02.jpg`,
+    heroImage: `${media}ai-music-video-showcase-02.jpg`,
+    videoUrl: `${media}ai-music-video-showcase-02.mp4`,
+    services: ['Music Video Promotion', 'AI Video Creation', 'YouTube Promotion'],
+    tools: ['Cinematic Production', 'Video Editing', 'Premiere Coordination'],
+    year: '2025',
+    featured: true,
+    isPublished: true,
+    isConceptWork: false,
+    conceptLabel: 'Completed Studio Work',
+  },
+  {
+    id: 'artist-release-campaign-8-week',
+    slug: 'artist-release-campaign-8-week',
+    title: '8-Week Full Album Release Campaign Architecture',
+    category: 'Music Promotion',
+    subCategory: 'Music Release Campaigns',
+    shortDescription: 'Comprehensive timeline spanning pre-save momentum, launch week, and post-release longevity.',
+    description:
+      'A structured 8-week release roadmap illustrating the coordination of distributor lead times, editorial pitches, press announcements, and post-launch sustaining content. Labelled as an agency sample model.',
+    thumbnail: `${media}dope_vs_pope_cover.png`,
+    heroImage: `${media}dope_vs_pope_cover.png`,
+    services: ['Music Release Campaigns', 'Release Scheduling Assistance'],
+    tools: ['Release Roadmapping', 'Pre-Save Funneling', 'PR Scheduling'],
+    year: '2026',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Agency Demonstration Framework',
+  },
+  {
+    id: 'playlist-outreach-campaign-sample',
+    slug: 'playlist-outreach-campaign-sample',
+    title: 'Independent Playlist Outreach & Placement Example',
+    category: 'Music Promotion',
+    subCategory: 'Playlist Outreach',
+    shortDescription: 'Vetted curator pitching logs, feedback digests, and organic placement monitoring.',
+    description:
+      'Demonstration case showing manual curator identification, communication logs, and placement tracking across genre-specific mood lists (late-night drive, chill beats, workout energy).',
+    thumbnail: `${media}afaqyomi-audio-mastering-cover.svg`,
+    heroImage: `${media}afaqyomi-audio-mastering-cover.svg`,
+    services: ['Playlist Outreach', 'Independent Playlist Curator Outreach'],
+    tools: ['Curator Vetting', 'Direct Outreach', 'Analytics Verification'],
+    year: '2026',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Demonstration Project',
+  },
+
+  // ==========================================
+  // 2. MUSIC DISTRIBUTION PROJECTS
+  // ==========================================
+  {
+    id: 'single-distribution-project',
+    slug: 'single-distribution-project',
+    title: 'Global Single Release & Ingestion Delivery',
+    category: 'Music Distribution',
+    subCategory: 'Single Distribution',
+    shortDescription: 'Flawless 150+ platform delivery with ISRC assignment and time-synced lyrics.',
+    description:
+      'A complete single distribution workflow case study demonstrating lossless FLAC ingestion, 3000x3000px artwork validation, UPC barcode allocation, and simultaneous worldwide storefront delivery.',
+    thumbnail: `${media}brunchy_track_cover.png`,
+    heroImage: `${media}brunchy_track_cover.png`,
+    services: ['Single Distribution', 'Digital Music Distribution', 'Music Metadata Preparation'],
+    tools: ['Lossless Audio QA', 'DDEX Ingestion', 'Barcode Assignment'],
+    year: '2025',
+    featured: true,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Demonstration Project',
+  },
+  {
+    id: 'ep-release-sequencing-project',
+    slug: 'ep-release-sequencing-project',
+    title: '5-Track EP Release & Metadata Architecture',
+    category: 'Music Distribution',
+    subCategory: 'EP Distribution',
+    shortDescription: 'Track sequencing, focus single designation, and synchronized DSP rollout.',
+    description:
+      'Demonstration project presenting the release structuring of a 5-track concept EP, highlighting focus track designation for editorial submission, volume numbering, and consistent artist page linkage.',
+    thumbnail: `${media}run_to_scar_cover.png`,
+    heroImage: `${media}run_to_scar_cover.png`,
+    services: ['EP Distribution', 'Music Release Management'],
+    tools: ['ISRC Ledger', 'Sequence Validation', 'Store Delivery Audit'],
+    year: '2026',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Concept Work',
+  },
+  {
+    id: 'album-distribution-mastering-project',
+    slug: 'album-distribution-mastering-project',
+    title: '12-Track Studio Album Distribution & Delivery',
+    category: 'Music Distribution',
+    subCategory: 'Album Distribution',
+    shortDescription: 'Full-length LP pre-order setup, instant gratification tracks, and digital booklet.',
+    description:
+      'Exemplary full-length studio album distribution architecture featuring 24-bit high-resolution audio delivery, staggered pre-order instant unlocks, and multi-contributor credits mapping. Paired with real studio audio preview.',
+    thumbnail: `${media}afaqyomi-audio-mastering-cover.svg`,
+    heroImage: `${media}afaqyomi-audio-mastering-cover.svg`,
+    audioUrl: `${media}touch-me-watch-it-burn-24bit-master.flac`,
+    audioFormat: 'audio/flac',
+    duration: '4:13',
+    services: ['Album Distribution', 'Music Metadata Preparation', 'Artist & Contributor Information Support'],
+    tools: ['High-Res Audio Ingestion', 'DDEX 3.82', 'Catalogue Management'],
+    year: '2025',
+    featured: true,
+    isPublished: true,
+    isConceptWork: false,
+    conceptLabel: 'Completed Studio Work',
+  },
+  {
+    id: 'music-artwork-release-preparation',
+    slug: 'music-artwork-release-preparation',
+    title: 'Music Artwork & Release Compliance Packaging',
+    category: 'Music Distribution',
+    subCategory: 'Artwork & Release Prep',
+    shortDescription: 'Rigorous DSP guideline compliance preventing artwork rejection.',
+    description:
+      'Standardized release preparation showcase demonstrating technical resolution checks, elimination of disallowed third-party brand marks or blurry elements, RGB color profiles, and barcode integration.',
+    thumbnail: `${media}windows_cover.png`,
+    heroImage: `${media}windows_cover.png`,
+    gallery: [
+      `${media}windows_cover.png`,
+      `${media}brand_new_day_cover.png`,
+      `${media}dope_vs_pope_cover.png`,
+    ],
+    services: ['Music Metadata Preparation', 'Cover Art & Banner Design'],
+    tools: ['Photoshop', 'Color Profiling', 'DSP Compliance QA'],
+    year: '2025',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Demonstration Project',
+  },
+  {
+    id: 'dsp-delivery-monitoring-manifest',
+    slug: 'dsp-delivery-monitoring-manifest',
+    title: 'Digital Streaming Platform Delivery Manifest',
+    category: 'Music Distribution',
+    subCategory: 'DSP Delivery Examples',
+    shortDescription: 'Real-time delivery verification across Spotify, Apple Music, Tidal, Amazon & Deezer.',
+    description:
+      'A complete release delivery report demonstrating distributor batch ingestion status, territory clearance, and storefront live-link confirmations. Labelled as a demonstration manifest.',
+    thumbnail: `${media}afaqyomi-audio-mastering-cover.svg`,
+    heroImage: `${media}afaqyomi-audio-mastering-cover.svg`,
+    audioUrl: `${media}we-could-be-love-commercial-master.mp3`,
+    audioFormat: 'audio/mpeg',
+    duration: '5:59',
+    services: ['Digital Music Distribution', 'Music Release Management'],
+    tools: ['Ingestion Dashboards', 'DDEX Feeds', 'Storefront QA'],
+    year: '2025',
+    featured: false,
+    isPublished: true,
+    isConceptWork: false,
+    conceptLabel: 'Completed Studio Work',
+  },
+
+  // ==========================================
+  // 3. MUSIC PITCHING PROJECTS
+  // ==========================================
+  {
+    id: 'spotify-editorial-pitch-presentation',
+    slug: 'spotify-editorial-pitch-presentation',
+    title: 'Spotify for Artists Editorial Pitch Package',
+    category: 'Music Pitching',
+    subCategory: 'Playlist Pitching Examples',
+    shortDescription: '500-character editor narrative, cultural contextualization, and sonic descriptors.',
+    description:
+      'A model editorial pitch presentation showcasing how to convey the emotional core, recording instrumentation, promotional backing, and target playlist fits within Spotify for Artists strict submission limits.',
+    thumbnail: `${media}afaqyomi-audio-mastering-cover.svg`,
+    heroImage: `${media}afaqyomi-audio-mastering-cover.svg`,
+    audioUrl: `${media}still-reaching-30-second-preview.flac`,
+    audioFormat: 'audio/flac',
+    duration: '0:30',
+    services: ['Spotify Playlist Pitching', 'Genre-Based Music Pitching'],
+    tools: ['Spotify for Artists', 'Pitch Copywriting', 'Genre Taxonomy'],
+    year: '2026',
+    featured: true,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Demonstration Package',
+  },
+  {
+    id: 'curator-outreach-deck-presentation',
+    slug: 'curator-outreach-deck-presentation',
+    title: 'Independent Curator Outreach Deck',
+    category: 'Music Pitching',
+    subCategory: 'Curator Outreach Presentations',
+    shortDescription: 'Personalized tastemaker messaging, private listening streams, and quick bios.',
+    description:
+      'A presentation example illustrating curator-first communication: no spam, concise listening links with timestamp cues, clear genre comps, and respect for individual submission rules.',
+    thumbnail: `${media}brand_new_day_cover.png`,
+    heroImage: `${media}brand_new_day_cover.png`,
+    services: ['Independent Playlist Curator Outreach', 'Music Submission Preparation'],
+    tools: ['Pitch Decks', 'Private Cloud Audio', 'Curator CRM'],
+    year: '2026',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Concept Work',
+  },
+  {
+    id: 'music-blog-press-pitching-example',
+    slug: 'music-blog-press-pitching-example',
+    title: 'Music Blog Press Pitching & Premiere Campaign',
+    category: 'Music Pitching',
+    subCategory: 'Music Blog Pitching Examples',
+    shortDescription: 'Targeted press release distribution, EPK formatting, and blog coverage coordination.',
+    description:
+      'Demonstration campaign showing press outreach to indie publications and genre tastemaker zines, resulting in premiere articles and valuable Google Knowledge Panel verification signals.',
+    thumbnail: `${media}google-knowledge-panel-1.jpeg`,
+    heroImage: `${media}google-knowledge-panel-1.jpeg`,
+    gallery: [
+      `${media}google-knowledge-panel-1.jpeg`,
+      `${media}google-knowledge-panel-2.jpeg`,
+      `${media}google-knowledge-panel-3.jpeg`,
+      `${media}google-knowledge-panel-4.jpeg`,
+      `${media}google-knowledge-panel-5.jpeg`,
+    ],
+    services: ['Music Blog Pitching', 'Music Media Outreach'],
+    tools: ['Press Release Wire', 'Digital EPK', 'Media Outreach'],
+    year: '2025',
+    featured: true,
+    isPublished: true,
+    isConceptWork: false,
+    conceptLabel: 'Completed Studio Work',
+  },
+  {
+    id: 'music-submission-campaign-suite',
+    slug: 'music-submission-campaign-suite',
+    title: 'Digital EPK & Industry Submission Suite',
+    category: 'Music Pitching',
+    subCategory: 'Music Submission Campaigns',
+    shortDescription: 'One-click private listening portal with press photos, lyrics, and stems.',
+    description:
+      'A polished submission package concept integrating private cloud streaming, lossless asset downloads, biography one-sheet, and social verification links designed for label A&Rs and music supervisors.',
+    thumbnail: `${media}dope_vs_pope_cover.png`,
+    heroImage: `${media}dope_vs_pope_cover.png`,
+    services: ['Music Submission Preparation', 'Music Industry Exposure Campaigns'],
+    tools: ['Digital EPK Architecture', 'Private Streaming', 'Asset Packaging'],
+    year: '2026',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Demonstration Project',
+  },
+  {
+    id: 'artist-discovery-peer-outreach',
+    slug: 'artist-discovery-peer-outreach',
+    title: 'Artist Discovery & Cross-Pollination Campaign',
+    category: 'Music Pitching',
+    subCategory: 'Artist Discovery Campaigns',
+    shortDescription: 'Collaborative artist mapping, DJ remix outreach, and co-release pitches.',
+    description:
+      'Demonstration framework detailing the identification of complementary artists in matching listener tiers, proposing mutually beneficial guest features, remix trades, and cross-promotional playlist swaps.',
+    thumbnail: `${media}run_to_scar_cover.png`,
+    heroImage: `${media}run_to_scar_cover.png`,
+    services: ['Artist Discovery & Outreach', 'Genre-Based Music Pitching'],
+    tools: ['Sound Mapping', 'Peer Collaboration Funnel', 'Co-Marketing Design'],
+    year: '2026',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Concept Work',
+  },
+
+  // ==========================================
+  // 4. ARTIST BRANDING & CREATIVE PROJECTS
+  // ==========================================
+  {
+    id: 'google-knowledge-panel-presence',
+    slug: 'google-knowledge-panel-artist-presence',
+    title: 'Google Knowledge Panel & Artist Identity Suite',
+    category: 'Artist Branding & Creative',
+    subCategory: 'Artist Profile Designs',
+    shortDescription: 'Search presence coordination bringing together music releases, verified profiles, and official destinations.',
+    description:
+      'Real AFAQYOMI portfolio work across five verified artist search-presence case studies. The work establishes authoritative entity recognition in Google Search, uniting official releases, biographies, topic channels, and streaming links.',
+    thumbnail: `${media}google-knowledge-panel-1.jpeg`,
+    heroImage: `${media}google-knowledge-panel-1.jpeg`,
+    gallery: [
+      `${media}google-knowledge-panel-1.jpeg`,
+      `${media}google-knowledge-panel-2.jpeg`,
+      `${media}google-knowledge-panel-3.jpeg`,
+      `${media}google-knowledge-panel-4.jpeg`,
+      `${media}google-knowledge-panel-5.jpeg`,
+    ],
+    services: ['Artist Branding & Visibility', 'Artist Profile Optimization', 'Website SEO Optimization'],
+    tools: ['Google Search Console', 'Entity Linking', 'Schema Markup'],
+    year: '2025',
+    featured: true,
+    isPublished: true,
+    isConceptWork: false,
+    conceptLabel: 'Completed Studio Work',
+  },
+  {
+    id: 'music-cover-artwork-collection',
+    slug: 'music-cover-artwork-collection',
+    title: 'Music Cover Artwork & Visual Identity Series',
+    category: 'Artist Branding & Creative',
+    subCategory: 'Music Cover Artwork',
+    shortDescription: 'Striking album, EP, and single sleeve designs with distinctive artistic direction.',
+    description:
+      'A curated collection of official cover artwork designed by AFAQYOMI. Features expressive typography, atmospheric color theory, and high-impact visual themes created specifically to stand out on mobile streaming feeds.',
+    thumbnail: `${media}run_to_scar_cover.png`,
+    heroImage: `${media}run_to_scar_cover.png`,
+    gallery: [
+      `${media}run_to_scar_cover.png`,
+      `${media}dope_vs_pope_cover.png`,
+      `${media}windows_cover.png`,
+      `${media}brand_new_day_cover.png`,
+      `${media}brunchy_track_cover.png`,
+    ],
+    services: ['Cover Art & Banner Design', 'Artist Branding & Visibility'],
+    tools: ['Digital Illustration', 'Typographic Styling', 'Photo Manipulation'],
+    year: '2025',
+    featured: true,
+    isPublished: true,
+    isConceptWork: false,
+    conceptLabel: 'Completed Studio Work',
+  },
+  {
+    id: 'youtube-social-banner-suite',
+    slug: 'youtube-social-banner-suite',
+    title: 'Cross-Platform Channel Art & Marketing Banners',
+    category: 'Artist Branding & Creative',
+    subCategory: 'Music Marketing Banners',
+    shortDescription: 'Unified banner graphics for YouTube OAC, Spotify header, SoundCloud & X.',
+    description:
+      'A cohesive banner system designed for an upcoming music rollout, maintaining clean visual balance across desktop wide banners and mobile safe zones while spotlighting release dates.',
+    thumbnail: `${media}youtube_thumbnail_design.png`,
+    heroImage: `${media}youtube_thumbnail_design.png`,
+    services: ['Cover Art & Banner Design', 'Artist Branding & Visibility'],
+    tools: ['Multi-Device Safezone Layout', 'Graphic Design', 'Brand Typography'],
+    year: '2025',
+    featured: false,
+    isPublished: true,
+    isConceptWork: false,
+    conceptLabel: 'Completed Studio Work',
+  },
+  {
+    id: 'release-announcement-graphics-pack',
+    slug: 'release-announcement-graphics-pack',
+    title: 'Single Release Announcement & Social Creatives',
+    category: 'Artist Branding & Creative',
+    subCategory: 'Release Announcement Designs',
+    shortDescription: 'Multi-slide Instagram carousels, Out Now story motion assets, and Spotify canvas.',
+    description:
+      'Complete creative promotional package built for a single launch, including pre-save promo cards, release day "Out Now" square posts, 9:16 vertical motion stories, and looping Spotify Canvas concepts.',
+    thumbnail: `${media}brand_new_day_cover.png`,
+    heroImage: `${media}brand_new_day_cover.png`,
+    services: ['Social Media Music Marketing', 'Artist Branding & Visibility'],
+    tools: ['Motion Creatives', 'Social Layout System', 'Canvas Video Loops'],
+    year: '2026',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Demonstration Project',
+  },
+
+  // ==========================================
+  // 5. DIGITAL DEVELOPMENT PROJECTS
+  // ==========================================
+  {
+    id: 'modern-business-web-platform',
+    slug: 'modern-business-web-platform',
+    title: 'Creative Agency & Studio Business Platform',
+    category: 'Digital Development',
+    subCategory: 'Business Website Projects',
+    shortDescription: 'High-performance interactive web portal with custom animations and responsive quote tools.',
+    description:
+      'Real studio web development project by AFAQYOMI. Engineered with React, TypeScript, and modern styling to deliver seamless navigation, responsive design, audio streaming integration, and enterprise inquiry management.',
+    thumbnail: `${media}website-development-showcase-02.jpg`,
+    heroImage: `${media}website-development-showcase-02.jpg`,
+    videoUrl: `${media}website-development-showcase-02.mp4`,
+    services: ['Business Website Development', 'Responsive Website Development', 'Website SEO Optimization'],
+    tools: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
+    year: '2025',
+    featured: true,
+    isPublished: true,
+    isConceptWork: false,
+    conceptLabel: 'Completed Studio Work',
+    deviceType: 'both',
+  },
+  {
+    id: 'artist-official-music-website',
+    slug: 'artist-official-music-website',
+    title: 'Official Recording Artist Interactive Web Hub',
+    category: 'Digital Development',
+    subCategory: 'Artist Website Projects',
+    shortDescription: 'Music-first artist website with live audio player, tour date schedule, and video gallery.',
+    description:
+      'A dedicated artist website showcase featuring integrated streaming audio players with track selection, music video playback modals, newsletter fan capture, and direct links to streaming platforms. Labelled as a demonstration concept.',
+    thumbnail: `${media}website-development-showcase-03.jpg`,
+    heroImage: `${media}website-development-showcase-03.jpg`,
+    videoUrl: `${media}website-development-showcase-03.mp4`,
+    services: ['Artist Website Development', 'Custom Website Design', 'Responsive Website Development'],
+    tools: ['React Audio Engine', 'Next.js', 'Framer Motion'],
+    year: '2026',
+    featured: true,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Demonstration Project',
+    deviceType: 'both',
+  },
+  {
+    id: 'creative-director-portfolio-website',
+    slug: 'creative-director-portfolio-website',
+    title: 'Visual Portfolio & Case Study Showcase Platform',
+    category: 'Digital Development',
+    subCategory: 'Portfolio Websites',
+    shortDescription: 'Fullscreen video reels, category filters, and interactive media lightbox.',
+    description:
+      'Modern web application built for directors, editors, and CAD designers. Showcases fluid transitions, high-resolution media modals, responsive viewport handling, and optimized asset delivery.',
+    thumbnail: `${media}website_development_poster.jpg`,
+    heroImage: `${media}website_development_poster.jpg`,
+    videoUrl: `${media}website_development.mp4`,
+    services: ['Portfolio Website Development', 'Website Performance Optimization'],
+    tools: ['React', 'CSS Grid', 'Video Optimization', 'Modern Layouts'],
+    year: '2025',
+    featured: true,
+    isPublished: true,
+    isConceptWork: false,
+    conceptLabel: 'Completed Studio Work',
+    deviceType: 'desktop',
+  },
+  {
+    id: 'single-release-landing-page',
+    slug: 'single-release-landing-page',
+    title: 'High-Converting Music Release Pre-Save Landing Page',
+    category: 'Digital Development',
+    subCategory: 'Landing Pages',
+    shortDescription: 'Fast, mobile-optimized pre-save and streaming destination with zero distraction.',
+    description:
+      'A laser-focused release landing page design built to convert ad clicks into pre-saves across Spotify, Apple Music, and YouTube. Incorporates countdown timer, audio preview snippet, and clean social proof.',
+    thumbnail: `${media}windows_cover.png`,
+    heroImage: `${media}windows_cover.png`,
+    services: ['Landing Page Development', 'Responsive Website Development'],
+    tools: ['Lightweight HTML5/CSS', 'Smart URL Engine', 'Meta Pixel Integration'],
+    year: '2026',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Demonstration Project',
+    deviceType: 'mobile',
+  },
+  {
+    id: 'merch-ecommerce-store-design',
+    slug: 'merch-ecommerce-store-design',
+    title: 'Artist Merchandise & Digital Audio Storefront',
+    category: 'Digital Development',
+    subCategory: 'E-commerce Website Designs',
+    shortDescription: 'Shopify / Stripe checkout for physical vinyl, apparel, and instant WAV downloads.',
+    description:
+      'E-commerce architecture demonstration combining physical merchandise inventory management (t-shirts, vinyl, hats) with instant digital file delivery for stems, samples, and high-res audio.',
+    thumbnail: `${media}afaqyomi-audio-mastering-cover.svg`,
+    heroImage: `${media}afaqyomi-audio-mastering-cover.svg`,
+    services: ['E-commerce Website Development', 'Custom Website Design'],
+    tools: ['Stripe Integration', 'Digital Downloads Engine', 'Responsive UI'],
+    year: '2026',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Concept Work',
+    deviceType: 'desktop',
+  },
+  {
+    id: 'corporate-redesign-modernization',
+    slug: 'corporate-redesign-modernization',
+    title: 'Legacy Web Platform Redesign & Performance Upgrade',
+    category: 'Digital Development',
+    subCategory: 'Website Redesign Projects',
+    shortDescription: 'Transforming a slow legacy website into a sub-second, mobile-first experience.',
+    description:
+      'Case study illustrating the migration of an outdated web presence to a modern TypeScript/Vite architecture, cutting load times by 70%, improving mobile conversion, and implementing full Schema SEO markup.',
+    thumbnail: `${media}website-development-showcase-02.jpg`,
+    heroImage: `${media}website-development-showcase-02.jpg`,
+    services: ['Website Redesign', 'Website Performance Optimization', 'Website SEO Optimization'],
+    tools: ['Lighthouse Auditing', '301 Redirect Mapping', 'Tailwind CSS'],
+    year: '2025',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Demonstration Project',
+    deviceType: 'both',
+  },
+  {
+    id: 'responsive-device-mockups-suite',
+    slug: 'responsive-device-mockups-suite',
+    title: 'Multi-Device Responsive Web Architecture Showcase',
+    category: 'Digital Development',
+    subCategory: 'Responsive Website Mockups',
+    shortDescription: 'Interactive viewport toggling between desktop, tablet, and mobile views.',
+    description:
+      'Interactive demonstration of modern responsive web engineering, showcasing fluid typography, adaptive navigation bars, touch-friendly audio players, and lightning-fast media loading across all device classes.',
+    thumbnail: `${media}website-development-showcase-03.jpg`,
+    heroImage: `${media}website-development-showcase-03.jpg`,
+    services: ['Responsive Website Development', 'Website Maintenance'],
+    tools: ['Responsive Breakpoints', 'Touch Gestures', 'Cross-Browser QA'],
+    year: '2026',
+    featured: false,
+    isPublished: true,
+    isConceptWork: true,
+    conceptLabel: 'Demonstration Project',
+    deviceType: 'both',
+  },
+];
+
+export const publishedProjects = projects.filter((project) => project.isPublished);
+export const featuredProjects = publishedProjects.filter((project) => project.featured);
+
+export function getProjectsByCategory(category: WorkCategory | 'All'): Project[] {
+  if (category === 'All') return publishedProjects;
+  return publishedProjects.filter((project) => project.category === category);
+}
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return publishedProjects.find((project) => project.slug === slug);
+}
