@@ -306,7 +306,7 @@ function Home() {
           </div>
         </section>
 
-        {/* Requirement 4: Contact Section with afaqyomi.com@gmail.com */}
+        {/* Requirement 4: Contact Section with afaqyomi@gmail.com */}
         <ContactSection />
 
         {/* Global CTA */}
@@ -320,9 +320,6 @@ function Home() {
 // ABOUT AFAQYOMI PAGE
 // ==========================================
 function About() {
-  const founder = teamMembers[0];
-  const opsManager = teamMembers[1];
-
   return (
     <>
       <SEO
@@ -405,66 +402,45 @@ function About() {
               </p>
             </div>
 
-            <div className="mt-12 grid gap-8 md:grid-cols-2">
-              {/* Founder */}
-              <div className="rounded-3xl border border-white/10 bg-[#061015] p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start">
-                <img
-                  src={founder.photo || '/media/afaqyomi-founder.jpeg'}
-                  alt={founder.name}
-                  className="h-32 w-32 shrink-0 rounded-2xl object-cover object-[center_20%] border border-white/10 shadow-lg"
-                />
-                <div>
-                  <span className="font-mono-ui text-[10px] uppercase tracking-widest text-[#f1a35d]">
-                    {founder.experience}
-                  </span>
-                  <h3 className="mt-1 font-display text-xl font-bold text-white sm:text-2xl">
-                    {founder.name}
-                  </h3>
-                  <p className="text-xs font-semibold text-[#54e6df] uppercase tracking-wider font-mono-ui mt-0.5">
-                    {founder.role}
-                  </p>
-                  <p className="mt-3 text-xs leading-relaxed text-white/60">
-                    {founder.fullBio}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {founder.specialties.map((s) => (
-                      <span key={s} className="rounded bg-white/5 px-2 py-0.5 font-mono-ui text-[9px] text-white/60">
-                        {s}
+            <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+              {teamMembers
+                .filter((member) => member.isActive)
+                .map((member) => (
+                  <div
+                    key={member.id}
+                    className="rounded-3xl border border-white/10 bg-[#061015] p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start"
+                  >
+                    <img
+                      src={member.photo || '/media/afaqyomi-founder.jpeg'}
+                      alt={member.name}
+                      className="h-32 w-32 shrink-0 rounded-2xl object-cover object-[center_20%] border border-white/10 shadow-lg"
+                    />
+                    <div>
+                      <span className="font-mono-ui text-[10px] uppercase tracking-widest text-[#f1a35d]">
+                        {member.experience}
                       </span>
-                    ))}
+                      <h3 className="mt-1 font-display text-xl font-bold text-white sm:text-2xl">
+                        {member.name}
+                      </h3>
+                      <p className="text-xs font-semibold text-[#54e6df] uppercase tracking-wider font-mono-ui mt-0.5">
+                        {member.role}
+                      </p>
+                      <p className="mt-3 text-xs leading-relaxed text-white/60">
+                        {member.fullBio}
+                      </p>
+                      <div className="mt-4 flex flex-wrap gap-1.5">
+                        {member.specialties.map((s) => (
+                          <span
+                            key={s}
+                            className="rounded bg-white/5 px-2 py-0.5 font-mono-ui text-[9px] text-white/60"
+                          >
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Ops Manager */}
-              <div className="rounded-3xl border border-white/10 bg-[#061015] p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start">
-                <img
-                  src={opsManager.photo || '/media/salahudeen_abdulrasaq.png'}
-                  alt={opsManager.name}
-                  className="h-32 w-32 shrink-0 rounded-2xl object-cover object-[center_20%] border border-white/10 shadow-lg"
-                />
-                <div>
-                  <span className="font-mono-ui text-[10px] uppercase tracking-widest text-[#f1a35d]">
-                    {opsManager.experience}
-                  </span>
-                  <h3 className="mt-1 font-display text-xl font-bold text-white sm:text-2xl">
-                    {opsManager.name}
-                  </h3>
-                  <p className="text-xs font-semibold text-[#54e6df] uppercase tracking-wider font-mono-ui mt-0.5">
-                    {opsManager.role}
-                  </p>
-                  <p className="mt-3 text-xs leading-relaxed text-white/60">
-                    {opsManager.fullBio}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {opsManager.specialties.map((s) => (
-                      <span key={s} className="rounded bg-white/5 px-2 py-0.5 font-mono-ui text-[9px] text-white/60">
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+                ))}
             </div>
           </div>
         </section>
@@ -695,7 +671,7 @@ function ProjectDetail() {
 }
 
 // ==========================================
-// CONTACT US PAGE (WITH AFAQYOMI.COM@GMAIL.COM)
+// CONTACT US PAGE (WITH AFAQYOMI@GMAIL.COM)
 // ==========================================
 function Contact() {
   const [location] = useLocation();

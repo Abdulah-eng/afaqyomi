@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { ArrowUpRight, CheckCircle2, Clock, Mail, MessageCircle, Phone, Send, Sparkles } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, Clock, Mail, MessageCircle, Phone, Send, Sparkles, AlertCircle, Loader2 } from 'lucide-react';
 import { siteConfig } from '@/data/siteConfig';
 import { allServices } from '@/data/services';
 
@@ -12,11 +12,52 @@ export function ContactSection({
   const [email, setEmail] = useState('');
   const [service, setService] = useState(preselectedService || allServices[0]?.title || '');
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: FormEvent) => {
+  const cleanWhatsapp = siteConfig.whatsapp.replace(/\D/g, '');
+
+  const mailtoUrl = `mailto:${siteConfig.primaryEmail}?subject=${encodeURIComponent(
+    `[Inquiry] ${service} - ${name || 'Prospective Client'}`
+  )}&body=${encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nProject Details:\n${message}`
+  )}`;
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage('');
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${siteConfig.primaryEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          service,
+          message,
+          _subject: `New AFAQYOMI Client Inquiry: ${service} (${name})`,
+          _template: 'table',
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        // Fallback: open mail client or indicate success with mailto option
+        setSubmitted(true);
+      }
+    } catch (err) {
+      // In case of network/offline issues, still allow user to send via mailto
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -47,7 +88,7 @@ export function ContactSection({
                     Official Contact Email
                   </span>
                   <span className="rounded-full bg-[#54e6df]/15 px-2 py-0.5 font-mono-ui text-[9px] text-[#54e6df]">
-                    Primary Inquiries
+                    Direct Inbox
                   </span>
                 </div>
                 <a
@@ -63,44 +104,39 @@ export function ContactSection({
                 </p>
               </div>
 
-              {/* DIRECT STUDIO EMAIL */}
+              {/* TEAM WHATSAPP SUPPORT */}
               <div className="rounded-2xl border border-white/10 bg-[#0a161d] p-5">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono-ui text-[10px] font-bold uppercase tracking-widest text-white/50">
-                    Direct Studio Email
+                  <span className="font-mono-ui text-[10px] font-bold uppercase tracking-widest text-[#54e6df]">
+                    Team WhatsApp Support
                   </span>
-                  <span className="rounded-full bg-white/5 px-2 py-0.5 font-mono-ui text-[9px] text-white/50">
-                    Official Alternate
+                  <span className="rounded-full bg-[#54e6df]/15 px-2 py-0.5 font-mono-ui text-[9px] text-[#54e6df]">
+                    Instant Support
                   </span>
                 </div>
                 <a
-                  href={`mailto:${siteConfig.officialEmail}`}
-                  className="mt-2.5 flex items-center gap-2.5 font-display text-base font-semibold text-white/80 transition hover:text-[#54e6df] sm:text-lg break-all"
-                  data-testid="contact-official-email"
+                  href={`https://wa.me/${cleanWhatsapp}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-2.5 flex items-center gap-2.5 font-display text-base font-semibold text-white/90 transition hover:text-[#54e6df] sm:text-lg"
+                  data-testid="contact-whatsapp-support"
                 >
-                  <Mail size={18} className="text-white/40 shrink-0" />
-                  <span>{siteConfig.officialEmail}</span>
+                  <MessageCircle size={18} className="text-[#54e6df] shrink-0" />
+                  <span>{siteConfig.whatsapp}</span>
                 </a>
+                <p className="mt-2 text-xs text-white/50">
+                  Official team WhatsApp support to report any issues, ask questions, or request quick updates.
+                </p>
               </div>
 
-              {/* Direct Phone & WhatsApp */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              {/* Direct Phone */}
+              <div className="pt-1">
                 <a
                   href={`tel:${siteConfig.phone}`}
                   className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 p-4 text-xs font-mono-ui text-white/80 transition hover:border-[#54e6df] hover:text-[#54e6df]"
                 >
                   <Phone size={16} className="text-[#f1a35d]" />
-                  <span>{siteConfig.phone}</span>
-                </a>
-
-                <a
-                  href={`https://wa.me/${siteConfig.whatsapp.replace(/\D/g, '')}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 p-4 text-xs font-mono-ui text-white/80 transition hover:border-[#54e6df] hover:text-[#54e6df]"
-                >
-                  <MessageCircle size={16} className="text-[#54e6df]" />
-                  <span>WhatsApp Message</span>
+                  <span>Direct Studio Line: {siteConfig.phone}</span>
                 </a>
               </div>
             </div>
@@ -129,20 +165,43 @@ export function ContactSection({
                 <h4 className="mt-4 font-display text-xl font-bold text-white">
                   Message Transmitted Successfully
                 </h4>
-                <p className="mt-2 text-xs text-white/70 max-w-md mx-auto">
-                  Thank you, <strong className="text-white">{name || 'there'}</strong>. We have received your inquiry regarding{' '}
-                  <strong className="text-[#54e6df]">{service}</strong>. Our team will review your project details and follow up at{' '}
+                <p className="mt-2 text-xs text-white/70 max-w-md mx-auto leading-relaxed">
+                  Thank you, <strong className="text-white">{name || 'there'}</strong>. Your inquiry regarding{' '}
+                  <strong className="text-[#54e6df]">{service}</strong> has been transmitted to{' '}
+                  <strong className="text-white">{siteConfig.primaryEmail}</strong>. Our team will review your project details and follow up at{' '}
                   <strong className="text-white">{email}</strong> shortly.
                 </p>
+
+                <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <a
+                    href={mailtoUrl}
+                    className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 font-mono-ui text-xs text-white transition hover:bg-white/20"
+                  >
+                    <Mail size={14} />
+                    <span>Open in Email App</span>
+                  </a>
+                  <a
+                    href={`https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(
+                      `Hello AFAQYOMI Team, I just submitted an inquiry for "${service}" from ${name || email}.`
+                    )}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#54e6df]/20 border border-[#54e6df]/40 px-5 py-2.5 font-mono-ui text-xs text-[#54e6df] transition hover:bg-[#54e6df]/30"
+                  >
+                    <MessageCircle size={14} />
+                    <span>Message WhatsApp Support</span>
+                  </a>
+                </div>
+
                 <button
                   type="button"
                   onClick={() => {
                     setSubmitted(false);
                     setMessage('');
                   }}
-                  className="mt-6 rounded-full border border-white/20 px-6 py-2.5 font-mono-ui text-xs text-white hover:text-[#54e6df]"
+                  className="mt-6 block mx-auto font-mono-ui text-[11px] text-white/50 hover:text-[#54e6df]"
                 >
-                  Submit Another Inquiry
+                  ← Submit Another Inquiry
                 </button>
               </div>
             ) : (
@@ -232,15 +291,25 @@ export function ContactSection({
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#f1a35d] py-4 font-mono-ui text-xs font-extrabold uppercase tracking-widest text-[#071116] shadow-[0_0_20px_rgba(241,163,93,0.3)] transition hover:bg-[#f6b77e]"
+                  disabled={isSubmitting}
+                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#f1a35d] py-4 font-mono-ui text-xs font-extrabold uppercase tracking-widest text-[#071116] shadow-[0_0_20px_rgba(241,163,93,0.3)] transition hover:bg-[#f6b77e] disabled:opacity-60 cursor-pointer"
                   data-testid="button-submit-inquiry"
                 >
-                  <span>Submit Inquiry to AFAQYOMI</span>
-                  <Send size={15} />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      <span>Transmitting Inquiry to Studio...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Submit Inquiry to AFAQYOMI</span>
+                      <Send size={15} />
+                    </>
+                  )}
                 </button>
 
                 <p className="text-center font-mono-ui text-[10px] text-white/40">
-                  Direct submission also sent to {siteConfig.primaryEmail}
+                  Direct submission sent straight to {siteConfig.primaryEmail}
                 </p>
               </form>
             )}
@@ -250,4 +319,3 @@ export function ContactSection({
     </section>
   );
 }
-

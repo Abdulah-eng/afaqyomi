@@ -71,10 +71,10 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* Contact information column (strictly displays afaqyomi.com@gmail.com and existing afaqyomi@afaqyomi.com) */}
+        {/* Contact information column (strictly displays afaqyomi@gmail.com and WhatsApp support) */}
         <div>
           <p className="font-mono-ui text-[11px] font-bold uppercase tracking-[0.2em] text-[#f1a35d]">
-            Contact & Inquiries
+            Contact & Support
           </p>
 
           <div className="mt-5 space-y-3.5 text-sm">
@@ -93,38 +93,31 @@ export function SiteFooter() {
               </a>
             </div>
 
-            {/* Additional Direct Email */}
+            {/* Team WhatsApp Support */}
             <div className="rounded-xl border border-white/10 bg-white/5 p-3">
-              <span className="font-mono-ui text-[9px] uppercase tracking-wider text-white/50">
-                Direct Studio Email
+              <span className="font-mono-ui text-[9px] uppercase tracking-wider text-[#54e6df]">
+                Team WhatsApp Support
               </span>
               <a
-                href={`mailto:${siteConfig.officialEmail}`}
-                className="mt-1 flex items-center gap-2 text-white/80 transition hover:text-[#54e6df]"
-                data-testid="footer-official-email"
+                href={`https://wa.me/${siteConfig.whatsapp.replace(/\D/g, '')}`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-1 flex items-center gap-2 text-white/90 font-medium transition hover:text-[#54e6df]"
+                data-testid="footer-whatsapp-support"
               >
-                <Mail size={15} className="text-white/40 shrink-0" />
-                <span className="break-all">{siteConfig.officialEmail}</span>
+                <MessageCircle size={15} className="text-[#54e6df] shrink-0" />
+                <span>{siteConfig.whatsapp}</span>
               </a>
             </div>
 
-            {/* Phone & WhatsApp */}
+            {/* Direct Studio Phone */}
             <div className="flex flex-col gap-2 pt-1 font-mono-ui text-xs text-white/70">
               <a
                 href={`tel:${siteConfig.phone}`}
                 className="flex items-center gap-2 transition hover:text-[#54e6df]"
               >
                 <Phone size={14} className="text-[#f1a35d]" />
-                <span>Call {siteConfig.phone}</span>
-              </a>
-              <a
-                href={`https://wa.me/${siteConfig.whatsapp.replace(/\D/g, '')}`}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 transition hover:text-[#54e6df]"
-              >
-                <MessageCircle size={14} className="text-[#54e6df]" />
-                <span>WhatsApp {siteConfig.whatsapp}</span>
+                <span>Studio Line: {siteConfig.phone}</span>
               </a>
             </div>
           </div>
