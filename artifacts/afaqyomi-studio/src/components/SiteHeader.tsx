@@ -77,6 +77,16 @@ export function SiteHeader() {
             About AFAQYOMI
           </Link>
 
+          <Link
+            href="/team"
+            className={`text-xs font-bold uppercase tracking-[0.16em] transition-colors hover:text-[#54e6df] ${
+              location === '/team' ? 'text-[#54e6df]' : 'text-white/70'
+            }`}
+            data-testid="nav-team"
+          >
+            Our Team
+          </Link>
+
           {/* Services Dropdown */}
           <div
             ref={dropdownRef}
@@ -200,6 +210,14 @@ export function SiteHeader() {
               className="flex items-center justify-between border-b border-white/8 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-white/80"
             >
               <span>About AFAQYOMI</span>
+              <ChevronRight size={16} className="text-[#54e6df]" />
+            </Link>
+
+            <Link
+              href="/team"
+              className="flex items-center justify-between border-b border-white/8 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-white/80"
+            >
+              <span>Our Team</span>
               <ChevronRight size={16} className="text-[#54e6df]" />
             </Link>
 
