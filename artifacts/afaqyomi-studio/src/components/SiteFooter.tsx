@@ -1,4 +1,4 @@
-import { Mail, MessageCircle, Phone, ArrowUpRight } from 'lucide-react';
+import { Mail, MessageCircle, Phone, ArrowUpRight, LifeBuoy } from 'lucide-react';
 import { Link } from 'wouter';
 import { siteConfig } from '@/data/siteConfig';
 
@@ -71,7 +71,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* Contact information column (strictly displays afaqyomi@gmail.com and WhatsApp support) */}
+        {/* Contact information column */}
         <div>
           <p className="font-mono-ui text-[11px] font-bold uppercase tracking-[0.2em] text-[#f1a35d]">
             Contact & Support
@@ -81,7 +81,7 @@ export function SiteFooter() {
             {/* Primary Email */}
             <div className="rounded-xl border border-white/10 bg-white/5 p-3">
               <span className="font-mono-ui text-[9px] uppercase tracking-wider text-[#54e6df]">
-                Official Contact Email
+                Official Inquiries Email
               </span>
               <a
                 href={`mailto:${siteConfig.primaryEmail}`}
@@ -93,31 +93,46 @@ export function SiteFooter() {
               </a>
             </div>
 
-            {/* Team WhatsApp Support */}
+            {/* Alternate Email */}
             <div className="rounded-xl border border-white/10 bg-white/5 p-3">
-              <span className="font-mono-ui text-[9px] uppercase tracking-wider text-[#54e6df]">
-                Team WhatsApp Support
+              <span className="font-mono-ui text-[9px] uppercase tracking-wider text-white/50">
+                Additional Official Contact
               </span>
               <a
-                href={`https://wa.me/${siteConfig.whatsapp.replace(/\D/g, '')}`}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-1 flex items-center gap-2 text-white/90 font-medium transition hover:text-[#54e6df]"
-                data-testid="footer-whatsapp-support"
+                href={`mailto:${siteConfig.secondaryEmail}`}
+                className="mt-1 flex items-center gap-2 text-white/80 transition hover:text-[#54e6df]"
+                data-testid="footer-secondary-email"
               >
-                <MessageCircle size={15} className="text-[#54e6df] shrink-0" />
-                <span>{siteConfig.whatsapp}</span>
+                <Mail size={15} className="text-white/40 shrink-0" />
+                <span className="break-all">{siteConfig.secondaryEmail}</span>
               </a>
             </div>
 
-            {/* Direct Studio Phone */}
-            <div className="flex flex-col gap-2 pt-1 font-mono-ui text-xs text-white/70">
+            {/* Team WhatsApp Support */}
+            <div className="rounded-xl border border-[#54e6df]/20 bg-[#54e6df]/5 p-3">
+              <span className="flex items-center gap-1.5 font-mono-ui text-[9px] font-bold uppercase tracking-wider text-[#54e6df]">
+                <LifeBuoy size={12} /> Team WhatsApp Support (Report Any Issues)
+              </span>
+              <a
+                href={`https://wa.me/${siteConfig.teamWhatsappSupport.replace(/\D/g, '')}`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-1 flex items-center gap-2 font-display text-sm font-bold text-white transition hover:text-[#54e6df]"
+                data-testid="footer-team-whatsapp"
+              >
+                <MessageCircle size={15} className="text-[#54e6df] shrink-0" />
+                <span>{siteConfig.teamWhatsappSupport}</span>
+              </a>
+            </div>
+
+            {/* Direct Phone */}
+            <div className="flex items-center gap-2 pt-1 font-mono-ui text-xs text-white/70">
+              <Phone size={14} className="text-[#f1a35d]" />
               <a
                 href={`tel:${siteConfig.phone}`}
-                className="flex items-center gap-2 transition hover:text-[#54e6df]"
+                className="transition hover:text-[#54e6df]"
               >
-                <Phone size={14} className="text-[#f1a35d]" />
-                <span>Studio Line: {siteConfig.phone}</span>
+                Call: {siteConfig.phone}
               </a>
             </div>
           </div>
@@ -134,4 +149,3 @@ export function SiteFooter() {
     </footer>
   );
 }
-
